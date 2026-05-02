@@ -6,20 +6,19 @@ class HomePageLocators:
 
     # Функция генератор локатора вопроса 
     @staticmethod
-    def question(index):
-        return (By.ID, f"accordion__heading-{index}")
-
-    # Функция генератор локатора ответа
+    def question(text):
+        return (By.XPATH, f"//div[contains(@class, 'accordion__button') and contains(text(), '{text}')]")
+    
+    # Функция генератор локатора ответа    
     @staticmethod
-    def answer(index):
-        return (By.ID, f"accordion__panel-{index}")
-
+    def answer(question):
+        return (
+            By.XPATH,
+            f"//div[contains(@class,'accordion__button') and contains(., '{question}')]/parent::div/following-sibling::div//p"
+        )
+    
     # Кнопка "Заказать" верхняя
     ORDER_TOP_BUTTON = (By.XPATH, "//div[contains(@class,'Header_Nav')]//button[text()='Заказать']")
 
-    # Кнопка "Заказать" верхняя
+    # Кнопка "Заказать" нижняя
     ORDER_BOTTOM_BUTTON = (By.XPATH, "//div[contains(@class,'Home_FinishButton')]//button[text()='Заказать']")
-
-
-
-    

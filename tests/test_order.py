@@ -1,3 +1,4 @@
+import allure
 import pytest
 from pages.order_page import OrderPage
 from pages.home_page import HomePage
@@ -7,6 +8,7 @@ from data.order_data import FIRST_ORDER, SECOND_ORDER
 
 @pytest.mark.parametrize("order_data", [FIRST_ORDER, SECOND_ORDER])
 class TestOrder:
+    @allure.title("Проверка успешного оформления заказа")
     def test_order(self, driver, order_data):
         home_page = HomePage(driver)
         home_page.open_home_page()
